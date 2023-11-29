@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaveri lista </title>
+</head>
+<body>
+
+    <h1 id="paaotsikko">Kaverilista V2.0</h1>
+
+    <a href="index_v1.html">versio 1</a>
+    <p></p>
+    
+    <input type="text" id="friendNameInput" placeholder="Syötä kaverin nimi">
+    
+    <button onclick="addFriend()">Lisää kaveri</button>
+    <button onclick="deleteFriend()">Poista kaveri</button>
+    <button onclick="sortFriends()">Järjestä nimet</button>
+    
+   
+    <p id="demo"></p>
+
+    <script>
+        let friendList = []; 
+
+        function addFriend() {
+            let inputElement = document.getElementById("friendNameInput");
+            let person = inputElement.value;
+
+            if (person.trim() !== "") {
+                friendList.push(person); 
+                inputElement.value = ""; 
+                updateFriendList();  
+            }
+        }
+
+        function deleteFriend() {
+            let inputElement = document.getElementById("friendNameInput");
+            let nameToDelete = inputElement.value;
+            let index = friendList.indexOf(nameToDelete);
+
+            if (index !== -1) {
+                friendList.splice(index, 1); 
+                inputElement.value = ""; 
+                updateFriendList(); 
+            } else {
+                alert("Kaveria nimellä " + nameToDelete + " ei löydy listalta.");
+            }
+        }
+        function sortFriends() {
+            friendList.sort(); 
+            updateFriendList(); 
+        }
+        function updateFriendList() {
+    
+            let listHTML = "";
+            for (let i = 0; i < friendList.length; i++) {
+                listHTML += (i + 1) + ". " + friendList[i] + "<br>";
+            }
+            document.getElementById("demo").innerHTML = listHTML;
+        }
+    </script>
+    
+</body>
+</html>

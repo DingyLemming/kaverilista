@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaveri lista</title>
+</head>
+<body>
+
+    <h1 id="paaotsikko">Kaverilista</h1>
+    <a href="index_v2.html">versio 2</a>
+    <p></p>
+    <button onclick="addFriend()">Lisää kaveri</button>
+    <p id="demo"></p>
+    <script>
+        let friendList = [];
+        let nameLimit = 10;
+
+        function addFriend(){
+            if (friendList.length >= nameLimit) {
+                alert("Maksimimäärä nimiä (" + nameLimit + ") on jo saavutettu.");
+                return;
+            }
+
+            let person = prompt("Lisää kaverin nimi");
+            if (person !== null) {
+                friendList.push(person);
+                updateFriendList();
+            }
+        }
+
+        function updateFriendList() {
+            let listHTML = "";
+            for (let i = 0; i < friendList.length; i++) {
+                listHTML += (i + 1) + ". " + friendList[i] + "<br>";
+            }
+            document.getElementById("demo").innerHTML = listHTML;
+        }
+    </script>
+    
+</body>
+</html>
